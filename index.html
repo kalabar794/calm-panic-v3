@@ -11,44 +11,33 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Crimson+Pro:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      /* Claude-inspired warm palette, adapted for calm */
       --canvas: #f5f0e8;
       --paper: #fffefb;
       --warm-white: #faf8f3;
       --cream: #f0ebe3;
-      
       --charcoal: #2d2a26;
       --warm-gray: #6b6660;
       --soft-gray: #9c9690;
       --mist: #c9c4bc;
-      
       --terracotta: #c96442;
       --terracotta-light: #d97757;
-      --terracotta-soft: rgba(201, 100, 66, 0.12);
-      
+      --terracotta-soft: rgba(201,100,66,.12);
       --sage: #7a9e7e;
-      --sage-soft: rgba(122, 158, 126, 0.15);
-      
+      --sage-soft: rgba(122,158,126,.15);
       --sky: #6b9bc3;
-      --sky-soft: rgba(107, 155, 195, 0.12);
-      
+      --sky-soft: rgba(107,155,195,.12);
       --radius-sm: 6px;
       --radius-md: 10px;
       --radius-lg: 16px;
       --radius-xl: 24px;
       --radius-full: 9999px;
-      
-      --shadow-whisper: 0 1px 2px rgba(45, 42, 38, 0.04);
-      --shadow-soft: 0 4px 12px rgba(45, 42, 38, 0.06);
-      --shadow-medium: 0 8px 24px rgba(45, 42, 38, 0.08);
-      --shadow-deep: 0 16px 48px rgba(45, 42, 38, 0.12);
+      --shadow-whisper: 0 1px 2px rgba(45,42,38,.04);
+      --shadow-soft: 0 4px 12px rgba(45,42,38,.06);
+      --shadow-medium: 0 8px 24px rgba(45,42,38,.08);
+      --shadow-deep: 0 16px 48px rgba(45,42,38,.12);
     }
 
     html {
@@ -70,12 +59,6 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Typography */
-    .font-serif {
-      font-family: 'Crimson Pro', Georgia, serif;
-    }
-
-    /* Layout */
     .page {
       min-height: 100vh;
       min-height: 100dvh;
@@ -86,7 +69,6 @@
       padding: 0 20px;
     }
 
-    /* Header */
     .header {
       display: flex;
       justify-content: space-between;
@@ -94,64 +76,31 @@
       padding: 24px 0 16px;
     }
 
-    .time-display {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
+    .time-display { display: flex; flex-direction: column; gap: 4px; }
 
     .timer {
       font-family: 'Crimson Pro', Georgia, serif;
       font-size: 2.5rem;
       font-weight: 500;
       letter-spacing: -0.02em;
-      color: var(--charcoal);
       line-height: 1;
     }
 
     .timer-label {
-      font-size: 0.75rem;
+      font-size: .75rem;
       font-weight: 500;
       color: var(--warm-gray);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: .08em;
     }
 
-    .sos-button {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--terracotta) 0%, #a85234 100%);
-      border: none;
-      color: white;
-      font-size: 0.625rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      cursor: pointer;
-      box-shadow: var(--shadow-soft), 0 2px 8px rgba(201, 100, 66, 0.3);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
+    .main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 8px 0 16px; }
 
-    .sos-button:active {
-      transform: scale(0.95);
-    }
-
-    /* Main content */
-    .main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 16px 0;
-    }
-
-    /* Breathing Circle */
     .breathing-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 28px;
+      gap: 24px;
     }
 
     .breathing-circle {
@@ -180,7 +129,7 @@
       inset: 8px;
       border-radius: 50%;
       border: 2px solid transparent;
-      transition: border-color 0.5s ease, box-shadow 0.5s ease;
+      transition: border-color .4s ease, box-shadow .4s ease;
     }
 
     .circle-progress.active {
@@ -204,7 +153,6 @@
       font-family: 'Crimson Pro', Georgia, serif;
       font-size: 1.25rem;
       font-weight: 500;
-      color: var(--charcoal);
       margin-bottom: 4px;
     }
 
@@ -216,43 +164,25 @@
       line-height: 1;
     }
 
-    .breathing-hint {
-      font-size: 0.8125rem;
-      color: var(--soft-gray);
-      margin-top: 8px;
-    }
-
-    /* Start Button */
-    .start-button {
+    .start-button, .primary-button {
       padding: 14px 36px;
       background: var(--terracotta);
       border: none;
       border-radius: var(--radius-full);
       color: white;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9375rem;
+      font-size: .9375rem;
       font-weight: 500;
       cursor: pointer;
-      box-shadow: var(--shadow-soft), 0 4px 12px rgba(201, 100, 66, 0.2);
-      transition: all 0.2s ease;
+      box-shadow: var(--shadow-soft), 0 4px 12px rgba(201,100,66,.2);
+      transition: all .2s ease;
     }
 
-    .start-button:hover {
-      background: var(--terracotta-light);
-      box-shadow: var(--shadow-medium), 0 6px 16px rgba(201, 100, 66, 0.25);
+    .start-button:active, .primary-button:active, .sos-button:active, .tool-button:active, .close-button:active {
+      transform: scale(.97);
     }
 
-    .start-button:active {
-      transform: scale(0.98);
-    }
+    .start-button.hidden { opacity: 0; transform: scale(.9); pointer-events: none; }
 
-    .start-button.hidden {
-      opacity: 0;
-      transform: scale(0.9);
-      pointer-events: none;
-    }
-
-    /* Mode Toggle */
     .mode-toggle {
       display: flex;
       gap: 6px;
@@ -268,41 +198,52 @@
       border: none;
       border-radius: var(--radius-full);
       color: var(--warm-gray);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.8125rem;
+      font-size: .8125rem;
       font-weight: 500;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all .2s ease;
     }
 
-    .mode-button.active {
-      background: var(--terracotta-soft);
-      color: var(--terracotta);
-    }
+    .mode-button.active { background: var(--terracotta-soft); color: var(--terracotta); }
 
-    /* Message Bar */
     .message-bar {
-      margin-top: 32px;
-      padding: 20px 24px;
+      margin-top: 8px;
+      padding: 18px 22px;
       background: var(--paper);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-whisper);
       text-align: center;
+      width: 100%;
     }
 
     .message-text {
-      font-size: 0.9375rem;
+      font-size: .9375rem;
       color: var(--warm-gray);
       line-height: 1.6;
       transition: opacity 1.5s ease;
     }
 
-    /* Tool Buttons */
+    .sos-button {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--terracotta) 0%, #a85234 100%);
+      border: none;
+      color: white;
+      font-size: .625rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft), 0 2px 8px rgba(201,100,66,.3);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
     .tools {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
-      padding: 24px 0;
+      padding: 20px 0 24px;
       padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
     }
 
@@ -318,31 +259,23 @@
       box-shadow: var(--shadow-whisper);
       color: var(--warm-gray);
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all .2s ease;
+      min-height: 86px;
     }
 
-    .tool-button:active {
-      transform: scale(0.96);
-    }
+    .tool-button.active { background: var(--sage-soft); color: var(--sage); }
+    .tool-button.sky-active { background: var(--sky-soft); color: var(--sky); }
+    .tool-button.terracotta-active { background: var(--terracotta-soft); color: var(--terracotta); }
 
-    .tool-button.active {
-      background: var(--sage-soft);
-      color: var(--sage);
-    }
-
-    .tool-icon {
-      font-size: 1.5rem;
-      line-height: 1;
-    }
-
+    .tool-icon { font-size: 1.5rem; line-height: 1; }
     .tool-label {
-      font-size: 0.6875rem;
+      font-size: .6875rem;
       font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: .04em;
+      text-align: center;
     }
 
-    /* Overlay */
     .overlay {
       position: fixed;
       inset: 0;
@@ -350,13 +283,10 @@
       z-index: 100;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: opacity .3s ease;
     }
 
-    .overlay.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .overlay.visible { opacity: 1; pointer-events: auto; }
 
     .overlay-header {
       display: flex;
@@ -370,7 +300,12 @@
       font-family: 'Crimson Pro', Georgia, serif;
       font-size: 1.25rem;
       font-weight: 500;
-      color: var(--charcoal);
+    }
+
+    .overlay-subtitle {
+      font-size: .875rem;
+      color: var(--soft-gray);
+      margin-top: 4px;
     }
 
     .close-button {
@@ -385,26 +320,46 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s ease;
-    }
-
-    .close-button:active {
-      transform: scale(0.95);
     }
 
     .overlay-content {
-      padding: 32px 24px;
+      padding: 28px 24px 36px;
       overflow-y: auto;
       max-height: calc(100vh - 80px);
     }
 
-    /* Grounding */
-    .grounding-card {
-      text-align: center;
-      padding: 48px 16px;
-      cursor: pointer;
+    .card {
+      background: var(--paper);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-whisper);
+      padding: 28px 22px;
     }
 
+    .card-title {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      color: var(--charcoal);
+      text-align: center;
+    }
+
+    .card-body {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--warm-gray);
+      text-align: center;
+    }
+
+    .meta-hint {
+      text-align: center;
+      margin-top: 18px;
+      font-size: .875rem;
+      color: var(--soft-gray);
+    }
+
+    .grounding-card { text-align: center; padding: 48px 16px; cursor: pointer; }
     .grounding-number {
       font-family: 'Crimson Pro', Georgia, serif;
       font-size: 7rem;
@@ -413,70 +368,45 @@
       line-height: 1;
       margin-bottom: 24px;
     }
-
     .grounding-prompt {
       font-family: 'Crimson Pro', Georgia, serif;
       font-size: 1.5rem;
       font-weight: 400;
-      color: var(--charcoal);
       line-height: 1.4;
       margin-bottom: 32px;
     }
+    .grounding-hint { font-size: .875rem; color: var(--soft-gray); }
 
-    .grounding-hint {
-      font-size: 0.875rem;
-      color: var(--soft-gray);
-    }
-
-    /* PMR */
-    .pmr-card {
-      background: var(--paper);
-      border-radius: var(--radius-lg);
-      padding: 32px 24px;
-      text-align: center;
-      box-shadow: var(--shadow-whisper);
-      cursor: pointer;
-      margin-bottom: 16px;
-    }
-
+    .pmr-card { cursor: pointer; margin-bottom: 16px; }
     .pmr-body-part {
       font-family: 'Crimson Pro', Georgia, serif;
       font-size: 1.75rem;
       font-weight: 500;
-      color: var(--charcoal);
       margin-bottom: 16px;
+      text-align: center;
     }
-
     .pmr-instruction {
       font-size: 1rem;
       color: var(--warm-gray);
       line-height: 1.7;
+      text-align: center;
     }
-
-    .pmr-dots {
+    .pmr-dots, .step-dots {
       display: flex;
       justify-content: center;
       gap: 8px;
       margin-top: 24px;
     }
-
-    .pmr-dot {
+    .pmr-dot, .step-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background: var(--cream);
-      transition: background 0.3s ease;
+      transition: background .3s ease;
     }
+    .pmr-dot.active, .step-dot.active { background: var(--terracotta); }
+    .pmr-dot.complete, .step-dot.complete { background: var(--sage); }
 
-    .pmr-dot.active {
-      background: var(--terracotta);
-    }
-
-    .pmr-dot.complete {
-      background: var(--sage);
-    }
-
-    /* Truth Cards */
     .truth-card {
       background: var(--paper);
       border-radius: var(--radius-lg);
@@ -485,22 +415,15 @@
       box-shadow: var(--shadow-whisper);
       cursor: pointer;
       margin-bottom: 12px;
-      transition: opacity 0.3s ease;
+      transition: opacity .3s ease;
     }
-
-    .truth-card.tapped {
-      opacity: 0.5;
-    }
-
+    .truth-card.tapped { opacity: .5; }
     .truth-text {
       font-family: 'Crimson Pro', Georgia, serif;
       font-size: 1.125rem;
-      font-weight: 400;
-      color: var(--charcoal);
       line-height: 1.6;
     }
 
-    /* SOS Mode */
     .sos-content {
       display: flex;
       flex-direction: column;
@@ -510,7 +433,6 @@
       text-align: center;
       gap: 40px;
     }
-
     .sos-circle {
       width: 200px;
       height: 200px;
@@ -518,19 +440,16 @@
       background: linear-gradient(180deg, var(--warm-white) 0%, var(--paper) 100%);
       border: 2px solid var(--terracotta-soft);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       transition: transform 4s ease-out;
     }
-
     .sos-label {
       font-family: 'Crimson Pro', Georgia, serif;
       font-size: 1.125rem;
       font-weight: 500;
       color: var(--terracotta);
     }
-
     .sos-message {
       font-size: 1.125rem;
       color: var(--warm-gray);
@@ -538,7 +457,6 @@
       max-width: 280px;
     }
 
-    /* Audio indicator */
     .audio-indicator {
       position: fixed;
       bottom: 120px;
@@ -548,54 +466,138 @@
       padding: 10px 20px;
       border-radius: var(--radius-full);
       box-shadow: var(--shadow-soft);
-      font-size: 0.8125rem;
+      font-size: .8125rem;
       color: var(--warm-gray);
       display: flex;
       align-items: center;
       gap: 8px;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity .3s ease;
       pointer-events: none;
+      z-index: 120;
     }
-
-    .audio-indicator.visible {
-      opacity: 1;
-    }
-
-    .audio-bars {
-      display: flex;
-      align-items: flex-end;
-      gap: 2px;
-      height: 14px;
-    }
-
+    .audio-indicator.visible { opacity: 1; }
+    .audio-bars { display: flex; align-items: flex-end; gap: 2px; height: 14px; }
     .audio-bar {
       width: 3px;
       background: var(--sage);
       border-radius: 1px;
       animation: audio-wave 1s ease-in-out infinite;
     }
+    .audio-bar:nth-child(1){height:40%;animation-delay:0s}
+    .audio-bar:nth-child(2){height:80%;animation-delay:.2s}
+    .audio-bar:nth-child(3){height:60%;animation-delay:.4s}
+    .audio-bar:nth-child(4){height:100%;animation-delay:.6s}
+    .audio-bar:nth-child(5){height:50%;animation-delay:.8s}
 
-    .audio-bar:nth-child(1) { height: 40%; animation-delay: 0s; }
-    .audio-bar:nth-child(2) { height: 80%; animation-delay: 0.2s; }
-    .audio-bar:nth-child(3) { height: 60%; animation-delay: 0.4s; }
-    .audio-bar:nth-child(4) { height: 100%; animation-delay: 0.6s; }
-    .audio-bar:nth-child(5) { height: 50%; animation-delay: 0.8s; }
+    .countdown-big {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--sky);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .small-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: var(--sky-soft);
+      color: var(--sky);
+      border-radius: var(--radius-full);
+      font-size: .75rem;
+      font-weight: 500;
+      margin: 0 auto 20px;
+    }
+
+    .finger-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 12px 0 24px;
+    }
+    .hand-svg {
+      width: 180px;
+      height: 220px;
+      overflow: visible;
+    }
+    .finger-path {
+      fill: none;
+      stroke: var(--cream);
+      stroke-width: 18;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .finger-progress {
+      fill: none;
+      stroke: var(--terracotta);
+      stroke-width: 12;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 560;
+      stroke-dashoffset: 560;
+      transition: stroke-dashoffset 1s linear;
+    }
+
+    .reset-list { display: grid; gap: 12px; }
+    .reset-item {
+      background: var(--paper);
+      box-shadow: var(--shadow-whisper);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 18px 20px;
+      display: grid;
+      gap: 8px;
+    }
+    .reset-name {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+    .reset-copy {
+      font-size: .95rem;
+      color: var(--warm-gray);
+      line-height: 1.6;
+    }
+    .reset-item.active {
+      outline: 2px solid var(--terracotta-soft);
+      background: var(--warm-white);
+    }
+
+    .shake-orb-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 8px 0 24px;
+    }
+    .shake-orb {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--warm-white), var(--paper));
+      box-shadow: var(--shadow-medium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.25rem;
+      color: var(--terracotta);
+      text-align: center;
+      padding: 20px;
+    }
+    .shake-orb.shaking { animation: shake-it .35s linear infinite; }
 
     @keyframes audio-wave {
-      0%, 100% { transform: scaleY(1); }
-      50% { transform: scaleY(0.5); }
+      0%,100%{transform:scaleY(1)}
+      50%{transform:scaleY(.5)}
     }
-
-    /* Animations */
-    @keyframes breathe-expand {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.08); }
-    }
-
-    @keyframes breathe-contract {
-      0% { transform: scale(1.08); }
-      100% { transform: scale(0.95); }
+    @keyframes shake-it {
+      0%{transform:translate(0,0) rotate(0deg)}
+      20%{transform:translate(-5px,4px) rotate(-2deg)}
+      40%{transform:translate(6px,-3px) rotate(2deg)}
+      60%{transform:translate(-4px,-4px) rotate(-2deg)}
+      80%{transform:translate(5px,3px) rotate(2deg)}
+      100%{transform:translate(0,0) rotate(0deg)}
     }
   </style>
 </head>
@@ -629,9 +631,7 @@
         </div>
 
         <div class="message-bar">
-          <p class="message-text" id="message">
-            Panic peaks within 10 minutes. You are already passing through.
-          </p>
+          <p class="message-text" id="message">Panic peaks within 10 minutes. You are already passing through.</p>
         </div>
       </div>
     </main>
@@ -653,10 +653,25 @@
         <span class="tool-icon">💫</span>
         <span class="tool-label">Truths</span>
       </button>
+      <button class="tool-button" id="coldBtn">
+        <span class="tool-icon">❄️</span>
+        <span class="tool-label">Cold</span>
+      </button>
+      <button class="tool-button" id="fingerBtn">
+        <span class="tool-icon">🖐️</span>
+        <span class="tool-label">Finger</span>
+      </button>
+      <button class="tool-button" id="vagusBtn">
+        <span class="tool-icon">🌊</span>
+        <span class="tool-label">Reset</span>
+      </button>
+      <button class="tool-button" id="shakeBtn">
+        <span class="tool-icon">✨</span>
+        <span class="tool-label">Shake</span>
+      </button>
     </div>
   </div>
 
-  <!-- Grounding Overlay -->
   <div class="overlay" id="groundOverlay">
     <div class="overlay-header">
       <h2 class="overlay-title">Grounding</h2>
@@ -671,23 +686,21 @@
     </div>
   </div>
 
-  <!-- PMR Overlay -->
   <div class="overlay" id="pmrOverlay">
     <div class="overlay-header">
       <h2 class="overlay-title">Muscle Relaxation</h2>
       <button class="close-button" id="closePmr">×</button>
     </div>
     <div class="overlay-content">
-      <div class="pmr-card" id="pmrCard">
+      <div class="card pmr-card" id="pmrCard">
         <h3 class="pmr-body-part" id="pmrBody">Hands</h3>
         <p class="pmr-instruction" id="pmrInstr">Make tight fists. Squeeze for 5 seconds... then release and feel the tension melt away.</p>
       </div>
       <div class="pmr-dots" id="pmrDots"></div>
-      <p style="text-align: center; margin-top: 20px; font-size: 0.875rem; color: var(--soft-gray);">Tap to continue</p>
+      <p class="meta-hint">Tap to continue</p>
     </div>
   </div>
 
-  <!-- Truth Cards Overlay -->
   <div class="overlay" id="truthOverlay">
     <div class="overlay-header">
       <h2 class="overlay-title">Truth Cards</h2>
@@ -696,62 +709,157 @@
     <div class="overlay-content" id="truthContent"></div>
   </div>
 
-  <!-- SOS Overlay -->
   <div class="overlay" id="sosOverlay">
     <div class="overlay-header">
       <h2 class="overlay-title">Emergency Calm</h2>
       <button class="close-button" id="closeSos">×</button>
     </div>
     <div class="overlay-content sos-content">
-      <div class="sos-circle" id="sosCircle">
-        <span class="sos-label" id="sosLabel">Breathe with me</span>
-      </div>
+      <div class="sos-circle" id="sosCircle"><span class="sos-label" id="sosLabel">Breathe with me</span></div>
       <p class="sos-message" id="sosMessage">This feeling is intense but temporary. Your body knows how to return to calm.</p>
     </div>
   </div>
 
-  <!-- Audio Indicator -->
+  <div class="overlay" id="coldOverlay">
+    <div class="overlay-header">
+      <div>
+        <h2 class="overlay-title">Cold Splash</h2>
+        <div class="overlay-subtitle">Stimulate the dive reflex</div>
+      </div>
+      <button class="close-button" id="closeCold">×</button>
+    </div>
+    <div class="overlay-content">
+      <div class="small-pill">❄️ 15-second cool water hold</div>
+      <div class="countdown-big" id="coldCount">15</div>
+      <div class="card">
+        <h3 class="card-title" id="coldTitle">Splash cool water on your face</h3>
+        <p class="card-body" id="coldBody">Or hold a cold washcloth under your eyes and across your cheeks. Breathe slowly while the timer counts down.</p>
+      </div>
+      <div style="display:flex; justify-content:center; gap:12px; margin-top:24px; flex-wrap:wrap;">
+        <button class="primary-button" id="coldStart">Start</button>
+        <button class="primary-button" id="coldRestart" style="background: var(--sky); box-shadow: var(--shadow-soft);">Restart</button>
+      </div>
+      <p class="meta-hint">If cold feels bad, stop. Cool, not painful.</p>
+    </div>
+  </div>
+
+  <div class="overlay" id="fingerOverlay">
+    <div class="overlay-header">
+      <div>
+        <h2 class="overlay-title">5-Finger Breathing</h2>
+        <div class="overlay-subtitle">Up each finger, down each finger</div>
+      </div>
+      <button class="close-button" id="closeFinger">×</button>
+    </div>
+    <div class="overlay-content">
+      <div class="small-pill">🖐️ Follow the terracotta path</div>
+      <div class="finger-wrap">
+        <svg class="hand-svg" viewBox="0 0 180 220" aria-hidden="true">
+          <path class="finger-path" d="M90 205 C80 190,78 160,80 130 C78 96,74 60,62 24 C56 8,44 12,44 28 C44 56,44 84,44 112 C42 84,34 52,22 38 C14 28,4 36,8 50 C14 76,24 108,28 132 C20 106,10 86,2 80 C-6 74,-12 86,-6 98 C6 122,20 150,34 170 C40 190,56 202,90 205 C124 202,140 190,146 170 C160 150,174 122,186 98 C192 86,186 74,178 80 C170 86,160 106,152 132 C156 108,166 76,172 50 C176 36,166 28,158 38 C146 52,138 84,136 112 C136 84,136 56,136 28 C136 12,124 8,118 24 C106 60,102 96,100 130 C102 160,100 190,90 205"/>
+          <path id="fingerTrace" class="finger-progress" d="M90 205 C80 190,78 160,80 130 C78 96,74 60,62 24 C56 8,44 12,44 28 C44 56,44 84,44 112 C42 84,34 52,22 38 C14 28,4 36,8 50 C14 76,24 108,28 132 C20 106,10 86,2 80 C-6 74,-12 86,-6 98 C6 122,20 150,34 170 C40 190,56 202,90 205 C124 202,140 190,146 170 C160 150,174 122,186 98 C192 86,186 74,178 80 C170 86,160 106,152 132 C156 108,166 76,172 50 C176 36,166 28,158 38 C146 52,138 84,136 112 C136 84,136 56,136 28 C136 12,124 8,118 24 C106 60,102 96,100 130 C102 160,100 190,90 205"/>
+        </svg>
+      </div>
+      <div class="card">
+        <h3 class="card-title" id="fingerTitle">Start at your thumb</h3>
+        <p class="card-body" id="fingerBody">Breathe in as you move up a finger. Breathe out as you move down. One full hand is one round.</p>
+      </div>
+      <div style="display:flex; justify-content:center; gap:12px; margin-top:24px; flex-wrap:wrap;">
+        <button class="primary-button" id="fingerStart">Start</button>
+        <button class="primary-button" id="fingerReset" style="background: var(--sky); box-shadow: var(--shadow-soft);">Reset</button>
+      </div>
+      <p class="meta-hint" id="fingerHint">10 slow segments</p>
+    </div>
+  </div>
+
+  <div class="overlay" id="vagusOverlay">
+    <div class="overlay-header">
+      <div>
+        <h2 class="overlay-title">Vagus Reset</h2>
+        <div class="overlay-subtitle">Three gentle regulation options</div>
+      </div>
+      <button class="close-button" id="closeVagus">×</button>
+    </div>
+    <div class="overlay-content">
+      <div class="reset-list" id="vagusList">
+        <div class="reset-item active">
+          <div class="reset-name">Hum</div>
+          <div class="reset-copy">Hum softly on a long exhale for 20 seconds. Feel the vibration in your throat and chest.</div>
+        </div>
+        <div class="reset-item">
+          <div class="reset-name">Long Exhale</div>
+          <div class="reset-copy">Inhale for 4. Exhale for 8. Do 5 slow rounds.</div>
+        </div>
+        <div class="reset-item">
+          <div class="reset-name">Soft Gaze</div>
+          <div class="reset-copy">Relax your jaw. Look left, then right, slowly. Let your eyes tell your body the room is safe.</div>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center; gap:12px; margin-top:24px; flex-wrap:wrap;">
+        <button class="primary-button" id="vagusNext">Next</button>
+      </div>
+      <div class="step-dots" id="vagusDots"></div>
+    </div>
+  </div>
+
+  <div class="overlay" id="shakeOverlay">
+    <div class="overlay-header">
+      <div>
+        <h2 class="overlay-title">Shake It Out</h2>
+        <div class="overlay-subtitle">Discharge adrenaline for 30 seconds</div>
+      </div>
+      <button class="close-button" id="closeShake">×</button>
+    </div>
+    <div class="overlay-content">
+      <div class="small-pill">✨ Loose arms. Soft knees. Gentle bounce.</div>
+      <div class="shake-orb-wrap">
+        <div class="shake-orb" id="shakeOrb">Ready</div>
+      </div>
+      <div class="countdown-big" id="shakeCount">30</div>
+      <div class="card">
+        <h3 class="card-title" id="shakeTitle">Let your hands flick</h3>
+        <p class="card-body" id="shakeBody">Shake your arms, shoulders, and hands. No perfect form. Just let the energy move out.</p>
+      </div>
+      <div style="display:flex; justify-content:center; gap:12px; margin-top:24px; flex-wrap:wrap;">
+        <button class="primary-button" id="shakeStart">Start</button>
+        <button class="primary-button" id="shakeReset" style="background: var(--sky); box-shadow: var(--shadow-soft);">Reset</button>
+      </div>
+    </div>
+  </div>
+
   <div class="audio-indicator" id="audioIndicator">
     <div class="audio-bars">
-      <div class="audio-bar"></div>
-      <div class="audio-bar"></div>
-      <div class="audio-bar"></div>
-      <div class="audio-bar"></div>
-      <div class="audio-bar"></div>
+      <div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div>
     </div>
     <span>Rain playing</span>
   </div>
 
   <script>
-    // ===== STATE =====
     const state = {
-      breathing: { active: false, mode: '478', phase: 0, timer: null },
+      breathing: { active: false, mode: '478', timer: null },
       rain: { active: false, ctx: null, node: null, gain: null },
       grounding: { step: 0 },
-      pmr: { step: 0 }
+      pmr: { step: 0 },
+      cold: { active: false, timer: null, remaining: 15 },
+      finger: { active: false, timer: null, segment: 0 },
+      vagus: { index: 0 },
+      shake: { active: false, timer: null, remaining: 30 }
     };
 
-    // ===== HAPTIC =====
-    function vibrate(pattern) {
-      if ('vibrate' in navigator) navigator.vibrate(pattern);
-    }
+    function vibrate(pattern) { if ('vibrate' in navigator) navigator.vibrate(pattern); }
 
-    // ===== TIMER =====
     const timerEl = document.getElementById('timer');
     const timerMinsEl = document.getElementById('timerMins');
     const startTime = Date.now();
-
     function updateTimer() {
       const elapsed = Math.floor((Date.now() - startTime) / 1000);
       const mins = Math.floor(elapsed / 60);
       const secs = elapsed % 60;
-      timerEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      timerEl.textContent = `${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
       timerMinsEl.textContent = mins;
       requestAnimationFrame(updateTimer);
     }
     updateTimer();
 
-    // ===== BREATHING =====
     const circleInner = document.getElementById('circleInner');
     const circleProgress = document.getElementById('circleProgress');
     const breathingPhase = document.getElementById('breathingPhase');
@@ -779,26 +887,18 @@
 
     function runBreathing() {
       if (!state.breathing.active) return;
-
       const mode = breathingModes[state.breathing.mode];
       const phase = mode[breathPhaseIndex];
-
       breathingPhase.textContent = phase.name;
       breathingCount.textContent = breathCountdown;
-
-      circleInner.style.transition = 'transform 1s ease-out';
       circleInner.style.transform = `scale(${phase.scale})`;
-
       vibrate(10);
-
       breathCountdown--;
-
       if (breathCountdown < 0) {
         breathPhaseIndex = (breathPhaseIndex + 1) % mode.length;
         breathCountdown = mode[breathPhaseIndex].duration;
         vibrate([20, 50, 20]);
       }
-
       state.breathing.timer = setTimeout(runBreathing, 1000);
     }
 
@@ -806,12 +906,10 @@
       state.breathing.active = true;
       startBtn.classList.add('hidden');
       circleProgress.classList.add('active');
-
       const mode = breathingModes[state.breathing.mode];
       breathPhaseIndex = 0;
       breathCountdown = mode[0].duration;
-
-      vibrate([50, 100, 50]);
+      vibrate([50,100,50]);
       runBreathing();
     });
 
@@ -820,26 +918,19 @@
       mode478.classList.add('active');
       modeBox.classList.remove('active');
     });
-
     modeBox.addEventListener('click', () => {
       state.breathing.mode = 'box';
       modeBox.classList.add('active');
       mode478.classList.remove('active');
     });
 
-    // ===== RAIN SOUNDS =====
     const rainBtn = document.getElementById('rainBtn');
     const audioIndicator = document.getElementById('audioIndicator');
-
     function createRain() {
-      if (!state.rain.ctx) {
-        state.rain.ctx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-
+      if (!state.rain.ctx) state.rain.ctx = new (window.AudioContext || window.webkitAudioContext)();
       const bufferSize = 2 * state.rain.ctx.sampleRate;
       const buffer = state.rain.ctx.createBuffer(1, bufferSize, state.rain.ctx.sampleRate);
       const data = buffer.getChannelData(0);
-
       let lastOut = 0;
       for (let i = 0; i < bufferSize; i++) {
         const white = Math.random() * 2 - 1;
@@ -847,48 +938,30 @@
         lastOut = data[i];
         data[i] *= 3.5;
       }
-
       const source = state.rain.ctx.createBufferSource();
       source.buffer = buffer;
       source.loop = true;
-
       const lowpass = state.rain.ctx.createBiquadFilter();
       lowpass.type = 'lowpass';
       lowpass.frequency.value = 500;
-
       const highpass = state.rain.ctx.createBiquadFilter();
       highpass.type = 'highpass';
       highpass.frequency.value = 180;
-
       const gain = state.rain.ctx.createGain();
       gain.gain.value = 0.35;
-
-      source.connect(lowpass);
-      lowpass.connect(highpass);
-      highpass.connect(gain);
-      gain.connect(state.rain.ctx.destination);
-
-      state.rain.node = source;
-      state.rain.gain = gain;
-
-      source.start();
+      source.connect(lowpass); lowpass.connect(highpass); highpass.connect(gain); gain.connect(state.rain.ctx.destination);
+      state.rain.node = source; state.rain.gain = gain; source.start();
     }
-
     rainBtn.addEventListener('click', () => {
       if (!state.rain.active) {
-        if (state.rain.ctx && state.rain.ctx.state === 'suspended') {
-          state.rain.ctx.resume();
-        }
+        if (state.rain.ctx && state.rain.ctx.state === 'suspended') state.rain.ctx.resume();
         createRain();
         state.rain.active = true;
         rainBtn.classList.add('active');
         audioIndicator.classList.add('visible');
         vibrate(30);
       } else {
-        if (state.rain.node) {
-          state.rain.node.stop();
-          state.rain.node = null;
-        }
+        if (state.rain.node) { state.rain.node.stop(); state.rain.node = null; }
         state.rain.active = false;
         rainBtn.classList.remove('active');
         audioIndicator.classList.remove('visible');
@@ -896,14 +969,12 @@
       }
     });
 
-    // ===== GROUNDING =====
     const groundBtn = document.getElementById('groundBtn');
     const groundOverlay = document.getElementById('groundOverlay');
     const closeGround = document.getElementById('closeGround');
     const groundCard = document.getElementById('groundCard');
     const groundNum = document.getElementById('groundNum');
     const groundPrompt = document.getElementById('groundPrompt');
-
     const groundingSteps = [
       { num: 5, text: 'things you can see' },
       { num: 4, text: 'things you can touch' },
@@ -911,34 +982,21 @@
       { num: 2, text: 'things you can smell' },
       { num: 1, text: 'thing you can taste' }
     ];
-
     function updateGrounding() {
       const step = groundingSteps[state.grounding.step];
       groundNum.textContent = step.num;
       groundPrompt.textContent = step.text;
     }
-
     groundBtn.addEventListener('click', () => {
-      state.grounding.step = 0;
-      updateGrounding();
-      groundOverlay.classList.add('visible');
-      vibrate(30);
+      state.grounding.step = 0; updateGrounding(); groundOverlay.classList.add('visible'); vibrate(30);
     });
-
     groundCard.addEventListener('click', () => {
       state.grounding.step++;
-      if (state.grounding.step < groundingSteps.length) {
-        updateGrounding();
-        vibrate(20);
-      } else {
-        groundOverlay.classList.remove('visible');
-        vibrate([20, 50, 40]);
-      }
+      if (state.grounding.step < groundingSteps.length) { updateGrounding(); vibrate(20); }
+      else { groundOverlay.classList.remove('visible'); vibrate([20,50,40]); }
     });
-
     closeGround.addEventListener('click', () => groundOverlay.classList.remove('visible'));
 
-    // ===== PMR =====
     const pmrBtn = document.getElementById('pmrBtn');
     const pmrOverlay = document.getElementById('pmrOverlay');
     const closePmr = document.getElementById('closePmr');
@@ -946,7 +1004,6 @@
     const pmrBody = document.getElementById('pmrBody');
     const pmrInstr = document.getElementById('pmrInstr');
     const pmrDots = document.getElementById('pmrDots');
-
     const pmrSteps = [
       { part: 'Hands', instr: 'Make tight fists. Squeeze for 5 seconds... now release and feel the tension melt away.' },
       { part: 'Shoulders', instr: 'Raise your shoulders to your ears. Hold tight... now drop them and feel the release.' },
@@ -955,12 +1012,10 @@
       { part: 'Feet', instr: 'Curl your toes tightly. Hold... now release and feel your feet relax.' },
       { part: 'Complete', instr: 'Take a deep breath. Notice how relaxed your whole body feels now.' }
     ];
-
     function updatePmr() {
       const step = pmrSteps[state.pmr.step];
       pmrBody.textContent = step.part;
       pmrInstr.textContent = step.instr;
-
       pmrDots.innerHTML = pmrSteps.map((_, i) => {
         let cls = 'pmr-dot';
         if (i < state.pmr.step) cls += ' complete';
@@ -968,33 +1023,18 @@
         return `<div class="${cls}"></div>`;
       }).join('');
     }
-
-    pmrBtn.addEventListener('click', () => {
-      state.pmr.step = 0;
-      updatePmr();
-      pmrOverlay.classList.add('visible');
-      vibrate(30);
-    });
-
+    pmrBtn.addEventListener('click', () => { state.pmr.step = 0; updatePmr(); pmrOverlay.classList.add('visible'); vibrate(30); });
     pmrCard.addEventListener('click', () => {
       state.pmr.step++;
-      if (state.pmr.step < pmrSteps.length) {
-        updatePmr();
-        vibrate(20);
-      } else {
-        pmrOverlay.classList.remove('visible');
-        vibrate([20, 50, 40]);
-      }
+      if (state.pmr.step < pmrSteps.length) { updatePmr(); vibrate(20); }
+      else { pmrOverlay.classList.remove('visible'); vibrate([20,50,40]); }
     });
-
     closePmr.addEventListener('click', () => pmrOverlay.classList.remove('visible'));
 
-    // ===== TRUTH CARDS =====
     const truthBtn = document.getElementById('truthBtn');
     const truthOverlay = document.getElementById('truthOverlay');
     const closeTruth = document.getElementById('closeTruth');
     const truthContent = document.getElementById('truthContent');
-
     const truthCards = [
       'This feeling is temporary.',
       'You have survived every difficult moment of your life.',
@@ -1007,84 +1047,247 @@
       'Nothing bad is happening.',
       'You can handle this.'
     ];
-
     function renderTruthCards() {
-      truthContent.innerHTML = truthCards.map((text, i) => `
-        <div class="truth-card" data-index="${i}">
-          <p class="truth-text">${text}</p>
-        </div>
-      `).join('');
-
+      truthContent.innerHTML = truthCards.map((text, i) => `<div class="truth-card" data-index="${i}"><p class="truth-text">${text}</p></div>`).join('');
       truthContent.querySelectorAll('.truth-card').forEach(card => {
-        card.addEventListener('click', () => {
-          card.classList.add('tapped');
-          vibrate(20);
-        });
+        card.addEventListener('click', () => { card.classList.add('tapped'); vibrate(20); });
       });
     }
-
-    truthBtn.addEventListener('click', () => {
-      renderTruthCards();
-      truthOverlay.classList.add('visible');
-      vibrate(30);
-    });
-
+    truthBtn.addEventListener('click', () => { renderTruthCards(); truthOverlay.classList.add('visible'); vibrate(30); });
     closeTruth.addEventListener('click', () => truthOverlay.classList.remove('visible'));
 
-    // ===== SOS MODE =====
     const sosBtn = document.getElementById('sosBtn');
     const sosOverlay = document.getElementById('sosOverlay');
     const closeSos = document.getElementById('closeSos');
     const sosCircle = document.getElementById('sosCircle');
     const sosLabel = document.getElementById('sosLabel');
     const sosMessage = document.getElementById('sosMessage');
-
     const sosMessages = [
       'This feeling is intense but temporary. Your body knows how to return to calm.',
       'You are safe. Your nervous system is just overreacting.',
       'Focus on your breath. Each exhale brings you closer to calm.',
       'This peak will pass within minutes. You are already on the way down.'
     ];
-
-    let sosActive = false;
-    let sosPhase = 'in';
-    let sosTimer = null;
-
+    let sosActive = false, sosPhase = 'in', sosTimer = null;
     function runSos() {
       if (!sosActive) return;
-
       if (sosPhase === 'in') {
         sosLabel.textContent = 'Breathe In';
         sosCircle.style.transform = 'scale(1.15)';
-        vibrate([30, 50, 30]);
+        vibrate([30,50,30]);
         sosPhase = 'out';
         sosTimer = setTimeout(runSos, 4000);
       } else {
         sosLabel.textContent = 'Breathe Out';
         sosCircle.style.transform = 'scale(0.9)';
-        vibrate([50, 100, 50]);
+        vibrate([50,100,50]);
         sosPhase = 'in';
         sosTimer = setTimeout(runSos, 8000);
       }
     }
-
     sosBtn.addEventListener('click', () => {
       sosActive = true;
       sosOverlay.classList.add('visible');
-      sosMessage.textContent = sosMessages[Math.floor(Math.random() * sosMessages.length)];
-      sosPhase = 'in';
-      sosCircle.style.transform = 'scale(1)';
-      vibrate([100, 100, 100]);
-      runSos();
+      sosMessage.textContent = sosMessages[Math.floor(Math.random()*sosMessages.length)];
+      sosPhase = 'in'; sosCircle.style.transform = 'scale(1)'; vibrate([100,100,100]); runSos();
     });
+    closeSos.addEventListener('click', () => { sosActive = false; clearTimeout(sosTimer); sosOverlay.classList.remove('visible'); });
 
-    closeSos.addEventListener('click', () => {
-      sosActive = false;
-      clearTimeout(sosTimer);
-      sosOverlay.classList.remove('visible');
+    const coldBtn = document.getElementById('coldBtn');
+    const coldOverlay = document.getElementById('coldOverlay');
+    const closeCold = document.getElementById('closeCold');
+    const coldStart = document.getElementById('coldStart');
+    const coldRestart = document.getElementById('coldRestart');
+    const coldCount = document.getElementById('coldCount');
+    const coldTitle = document.getElementById('coldTitle');
+    const coldBody = document.getElementById('coldBody');
+    function renderCold() {
+      coldCount.textContent = state.cold.remaining;
+      if (!state.cold.active && state.cold.remaining === 15) {
+        coldTitle.textContent = 'Splash cool water on your face';
+        coldBody.textContent = 'Or hold a cold washcloth under your eyes and across your cheeks. Breathe slowly while the timer counts down.';
+      } else if (state.cold.active) {
+        coldTitle.textContent = 'Stay with the cool sensation';
+        coldBody.textContent = 'Slow exhale. Let your face, eyes, and cheeks soften while your body settles.';
+      } else if (state.cold.remaining === 0) {
+        coldTitle.textContent = 'Done';
+        coldBody.textContent = 'Lift your head. Notice whether your heartbeat and breath feel a little slower now.';
+      }
+    }
+    function stopCold() { clearInterval(state.cold.timer); state.cold.active = false; coldBtn.classList.remove('sky-active'); }
+    function tickCold() {
+      if (!state.cold.active) return;
+      coldCount.textContent = state.cold.remaining;
+      if (state.cold.remaining <= 0) {
+        stopCold(); renderCold(); vibrate([40,80,40]); return;
+      }
+      vibrate(10);
+      state.cold.remaining -= 1;
+      renderCold();
+    }
+    function startCold() {
+      stopCold();
+      state.cold.remaining = 15;
+      state.cold.active = true;
+      coldBtn.classList.add('sky-active');
+      renderCold();
+      tickCold();
+      state.cold.timer = setInterval(tickCold, 1000);
+    }
+    coldBtn.addEventListener('click', () => { coldOverlay.classList.add('visible'); renderCold(); vibrate(30); });
+    coldStart.addEventListener('click', startCold);
+    coldRestart.addEventListener('click', startCold);
+    closeCold.addEventListener('click', () => { stopCold(); coldOverlay.classList.remove('visible'); });
+
+    const fingerBtn = document.getElementById('fingerBtn');
+    const fingerOverlay = document.getElementById('fingerOverlay');
+    const closeFinger = document.getElementById('closeFinger');
+    const fingerStart = document.getElementById('fingerStart');
+    const fingerReset = document.getElementById('fingerReset');
+    const fingerTitle = document.getElementById('fingerTitle');
+    const fingerBody = document.getElementById('fingerBody');
+    const fingerHint = document.getElementById('fingerHint');
+    const fingerTrace = document.getElementById('fingerTrace');
+    const fingerSegments = [
+      { title: 'Thumb up', body: 'Breathe in slowly as you move up the thumb.' },
+      { title: 'Thumb down', body: 'Breathe out as you move down the thumb.' },
+      { title: 'Index up', body: 'Breathe in slowly as you move up the finger.' },
+      { title: 'Index down', body: 'Breathe out as you move down the finger.' },
+      { title: 'Middle up', body: 'Breathe in slowly.' },
+      { title: 'Middle down', body: 'Breathe out slowly.' },
+      { title: 'Ring up', body: 'Breathe in as you trace upward.' },
+      { title: 'Ring down', body: 'Breathe out as you trace downward.' },
+      { title: 'Pinky up', body: 'Breathe in. Almost there.' },
+      { title: 'Pinky down', body: 'Breathe out. One full hand complete.' }
+    ];
+    function renderFinger() {
+      const seg = state.finger.segment;
+      const offset = 560 - (560 * (seg / fingerSegments.length));
+      fingerTrace.style.strokeDashoffset = offset;
+      if (seg >= fingerSegments.length) {
+        fingerTitle.textContent = 'Complete';
+        fingerBody.textContent = 'You traced one full hand. If it helped, do another round.';
+        fingerHint.textContent = '1 full round complete';
+      } else {
+        fingerTitle.textContent = fingerSegments[seg].title;
+        fingerBody.textContent = fingerSegments[seg].body;
+        fingerHint.textContent = `Segment ${seg + 1} of ${fingerSegments.length}`;
+      }
+    }
+    function stopFinger() { clearInterval(state.finger.timer); state.finger.active = false; fingerBtn.classList.remove('terracotta-active'); }
+    function tickFinger() {
+      if (!state.finger.active) return;
+      renderFinger();
+      vibrate(15);
+      state.finger.segment += 1;
+      if (state.finger.segment > fingerSegments.length) {
+        stopFinger();
+        state.finger.segment = fingerSegments.length;
+        renderFinger();
+        vibrate([30,60,30]);
+      }
+    }
+    function startFinger() {
+      stopFinger();
+      state.finger.segment = 0;
+      state.finger.active = true;
+      fingerBtn.classList.add('terracotta-active');
+      renderFinger();
+      state.finger.timer = setInterval(tickFinger, 4000);
+      tickFinger();
+    }
+    function resetFinger() {
+      stopFinger();
+      state.finger.segment = 0;
+      fingerTrace.style.strokeDashoffset = 560;
+      renderFinger();
+    }
+    fingerBtn.addEventListener('click', () => { fingerOverlay.classList.add('visible'); renderFinger(); vibrate(30); });
+    fingerStart.addEventListener('click', startFinger);
+    fingerReset.addEventListener('click', resetFinger);
+    closeFinger.addEventListener('click', () => { stopFinger(); fingerOverlay.classList.remove('visible'); });
+
+    const vagusBtn = document.getElementById('vagusBtn');
+    const vagusOverlay = document.getElementById('vagusOverlay');
+    const closeVagus = document.getElementById('closeVagus');
+    const vagusNext = document.getElementById('vagusNext');
+    const vagusList = document.getElementById('vagusList');
+    const vagusDots = document.getElementById('vagusDots');
+    function renderVagus() {
+      const items = [...vagusList.querySelectorAll('.reset-item')];
+      items.forEach((item, i) => item.classList.toggle('active', i === state.vagus.index));
+      vagusDots.innerHTML = items.map((_, i) => `<div class="step-dot ${i === state.vagus.index ? 'active' : i < state.vagus.index ? 'complete' : ''}"></div>`).join('');
+      vagusNext.textContent = state.vagus.index === items.length - 1 ? 'Again' : 'Next';
+    }
+    vagusBtn.addEventListener('click', () => { state.vagus.index = 0; renderVagus(); vagusOverlay.classList.add('visible'); vibrate(30); });
+    vagusNext.addEventListener('click', () => {
+      const items = vagusList.querySelectorAll('.reset-item');
+      state.vagus.index = (state.vagus.index + 1) % items.length;
+      renderVagus(); vibrate(20);
     });
+    closeVagus.addEventListener('click', () => vagusOverlay.classList.remove('visible'));
 
-    // ===== ROTATING MESSAGE =====
+    const shakeBtn = document.getElementById('shakeBtn');
+    const shakeOverlay = document.getElementById('shakeOverlay');
+    const closeShake = document.getElementById('closeShake');
+    const shakeStart = document.getElementById('shakeStart');
+    const shakeReset = document.getElementById('shakeReset');
+    const shakeCount = document.getElementById('shakeCount');
+    const shakeOrb = document.getElementById('shakeOrb');
+    const shakeTitle = document.getElementById('shakeTitle');
+    const shakeBody = document.getElementById('shakeBody');
+    function renderShake() {
+      shakeCount.textContent = state.shake.remaining;
+      if (!state.shake.active && state.shake.remaining === 30) {
+        shakeOrb.textContent = 'Ready';
+        shakeTitle.textContent = 'Let your hands flick';
+        shakeBody.textContent = 'Shake your arms, shoulders, and hands. No perfect form. Just let the energy move out.';
+      } else if (state.shake.active) {
+        shakeOrb.textContent = 'Shake';
+        shakeTitle.textContent = 'Keep it loose';
+        shakeBody.textContent = 'Tiny bounces are enough. Let your jaw unclench and your shoulders drop.';
+      } else if (state.shake.remaining === 0) {
+        shakeOrb.textContent = 'Done';
+        shakeTitle.textContent = 'Pause';
+        shakeBody.textContent = 'Stand still for one breath. Notice any warmth, tingling, or softening in your body.';
+      }
+    }
+    function stopShake() {
+      clearInterval(state.shake.timer);
+      state.shake.active = false;
+      shakeOrb.classList.remove('shaking');
+      shakeBtn.classList.remove('terracotta-active');
+    }
+    function tickShake() {
+      if (!state.shake.active) return;
+      if (state.shake.remaining <= 0) {
+        stopShake(); renderShake(); vibrate([40,80,40]); return;
+      }
+      shakeCount.textContent = state.shake.remaining;
+      vibrate(12);
+      state.shake.remaining -= 1;
+      renderShake();
+    }
+    function startShake() {
+      stopShake();
+      state.shake.remaining = 30;
+      state.shake.active = true;
+      shakeOrb.classList.add('shaking');
+      shakeBtn.classList.add('terracotta-active');
+      renderShake();
+      tickShake();
+      state.shake.timer = setInterval(tickShake, 1000);
+    }
+    function resetShake() {
+      stopShake();
+      state.shake.remaining = 30;
+      renderShake();
+    }
+    shakeBtn.addEventListener('click', () => { shakeOverlay.classList.add('visible'); renderShake(); vibrate(30); });
+    shakeStart.addEventListener('click', startShake);
+    shakeReset.addEventListener('click', resetShake);
+    closeShake.addEventListener('click', () => { stopShake(); shakeOverlay.classList.remove('visible'); });
+
     const messageEl = document.getElementById('message');
     const messages = [
       'Panic peaks within 10 minutes. You are already passing through.',
@@ -1093,9 +1296,7 @@
       'This feeling is temporary. It always passes.',
       'You have survived this before. You will again.'
     ];
-
     let messageIndex = 0;
-
     setInterval(() => {
       messageEl.style.opacity = '0';
       setTimeout(() => {
@@ -1105,12 +1306,16 @@
       }, 1500);
     }, 8000);
 
-    // ===== PREVENT ZOOM =====
     document.addEventListener('touchend', (e) => {
       const now = Date.now();
       if (now - (document.lastTouch || 0) < 300) e.preventDefault();
       document.lastTouch = now;
     }, { passive: false });
+
+    renderCold();
+    renderFinger();
+    renderVagus();
+    renderShake();
   </script>
 </body>
 </html>
